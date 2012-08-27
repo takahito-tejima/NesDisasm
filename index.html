@@ -1,0 +1,101 @@
+<html>
+ <head>
+  <script src="../lib/jquery-latest.js" type="text/javascript"></script>
+  <script src="jquery.sha1.js" type="text/javascript"></script>
+  <script src="nesdasm.js" type="text/javascript"></script>
+  <title>NES Disassembler</title>
+
+  <style>
+    body {
+    }
+    table.header {
+        border-collapse: collapse;
+        font-size: small;
+        font-family: 'Osaka-Mono', monospace;
+    }
+    table.header td, th {
+        border: 1px black solid;
+    }
+    table.disasm {
+        border: 1px black solid;
+	border-collapse: collapse;
+        margin: 5px;
+	padding: 5px;
+        font-family: 'Osaka-Mono', monospace;
+        font-size: small;
+        overflow: scroll;
+    }
+    table.disasm tr:hover {
+        background-color:#ddddff;
+    }
+    table.disasm td, th {
+//        border: 1px black solid;
+    }
+    table.disasm td.asm {
+        padding: 0px 10px 0px 40px;
+    }
+    table.disasm tr.comment {
+        background-color: gold;
+    }
+    input.comment {
+        width: 100%;
+    }
+    div.loading {
+        background-image: url("ajax-loader.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 600px;
+        height: 60px;
+        display:none;
+    }
+    h1{
+    display: none;
+    }
+  </style>
+ </head>
+
+ <body>
+  <h1>NES Disassembler</h1>
+
+  select .nes file: <input type="file" id="nesfile" />
+
+  <table class="header">
+   <tr>
+    <th>PRG page</th><td><div id="prg_page"/></td>
+    <th>CHR page</th><td><div id="chr_page"/></td>
+    <th>Mapper</th><td><div id="mapper"/></td>
+   </tr>
+   <tr>
+    <th>INT NMI</th><td><input id="int_nmi" type="text" value="8500" /></td>
+    <th>INT RESET</th><td><input id="int_reset" type="text" value="8000" /></td>
+    <th>INT IRQ/BRK</th><td><input id="int_irq" type="text" value="8000" /></td>
+   </tr>
+   <tr>
+    <td colspan=6>
+      <button ID="bank0">Page 0</button>
+      <button ID="bank1">Page 1</button>
+      <button ID="bank2">Page 2</button>
+      <button ID="bank3">Page 3</button>
+      <button ID="bank4">Page 4</button>
+      <button ID="bank5">Page 5</button>
+      <button ID="bank6">Page 6</button>
+      <button ID="bank7">Page 7</button>
+    </td>
+   </tr>
+   <tr>
+     <td colspan=3>
+       [<a id="download" href="comment.php?" target="_blank">Comment download</a>]
+     </td>
+     <td colspan=3>
+       [Comment upload]
+       <input type="file" id="commentfile">
+     </td>
+   </tr>
+  </table>
+  <div id="loading" class="loading"> </div>
+
+  <table id="asmtbl" class="disasm">
+  </table>
+  
+ </body>
+</html>
